@@ -36,7 +36,7 @@ mrDelivery.controller("mrDeliveryController", function ($scope, $http)
         //POST addRestaurant's data to the RestaurantController
         $http({
             method: 'POST',
-            url: 'http://localhost:1000/SaveRestaurant',
+            url: 'http://localhost:8080/SaveRestaurant',
             data: angular.toJson(addRestaurant),
         })
         .success(function (data) {
@@ -50,7 +50,7 @@ mrDelivery.controller("mrDeliveryController", function ($scope, $http)
     function refreshPendingRestaurantData() {
         $http({
             method: 'GET',
-            url: 'http://localhost:1000/GetPending',
+            url: 'http://localhost:8080/GetPending',
             data: angular.fromJson(pendingRestaurants)
         }).success(function (data) {
             $scope.pendingRestaurants = data;
@@ -63,7 +63,7 @@ mrDelivery.controller("mrDeliveryController", function ($scope, $http)
     function refreshRestaurantData() {
         $http({
             method: 'GET',
-            url: 'http://localhost:1000/GetRestaurants',
+            url: 'http://localhost:8080/GetRestaurants',
             data: angular.fromJson(restaurants),
             headers: {'Content-Type': 'application/json'}
         })
@@ -87,7 +87,7 @@ mrDelivery.controller("mrDeliveryController", function ($scope, $http)
 
         $http({
             method: 'PUT',
-            url: 'http://localhost:1000/updateRestaurant/' + restaurant.restaurantId,
+            url: 'http://localhost:8080/updateRestaurant/' + restaurant.restaurantId,
             data: angular.toJson(updateRestaurant),
             headers: {'Content-Type': 'application/json'}
         })
@@ -111,7 +111,7 @@ mrDelivery.controller("mrDeliveryController", function ($scope, $http)
 
         $http({
             method: 'DELETE',
-            url: 'http://localhost:1000/deleteRestaurant/' + restaurant.restaurantId,
+            url: 'http://localhost:8080/deleteRestaurant/' + restaurant.restaurantId,
             data: angular.toJson(delRestaurant),
             headers: {'Content-Type': 'application/json'}
         })
@@ -170,7 +170,7 @@ mrDelivery.controller("mrDeliveryController", function ($scope, $http)
 
         $http({
             method: 'POST',
-            url: 'http://localhost:1000/SaveMenuItem',
+            url: 'http://localhost:8080/SaveMenuItem',
             data: angular.toJson(menuItem),
             headers: {'Content-Type': 'application/json'}
         })
@@ -195,7 +195,7 @@ mrDelivery.controller("mrDeliveryController", function ($scope, $http)
         //GET Restaurant Menu data
         $http({
             method: 'GET',
-            url: 'http://localhost:1000/GetMenu/' + restaurant.restaurantId,
+            url: 'http://localhost:8080/GetMenu/' + restaurant.restaurantId,
             data: angular.fromJson(restaurants),
             headers: {'Content-Type': 'application/json'}
         })
@@ -246,7 +246,7 @@ mrDelivery.controller("mrDeliveryController", function ($scope, $http)
         //GET Restaurant Menu data
         $http({
             method: 'GET',
-            url: 'http://localhost:1000/GetMenu/' + restId + "/" + sectionName,
+            url: 'http://localhost:8080/GetMenu/' + restId + "/" + sectionName,
             data: angular.fromJson(restaurants),
             headers: {'Content-Type': 'application/json'}
         })
@@ -269,7 +269,7 @@ mrDelivery.controller("mrDeliveryController", function ($scope, $http)
         //GET Restaurant Menu data
         $http({
             method: 'GET',
-            url: 'http://localhost:1000/GetMenu/' + restId + "/" + sectionName,
+            url: 'http://localhost:8080/GetMenu/' + restId + "/" + sectionName,
             data: angular.fromJson(restaurants),
             headers: {'Content-Type': 'application/json'}
         })
@@ -309,7 +309,7 @@ mrDelivery.controller("mrDeliveryController", function ($scope, $http)
     //Forcing users to sign in first before adding items to cart
     $scope.login = function(){
         calcPayableAmount();
-        window.location.href = "http://localhost:1000/login";
+        window.location.href = "http://localhost:8080/login";
         
     };
     
@@ -330,7 +330,7 @@ mrDelivery.controller("mrDeliveryController", function ($scope, $http)
         //Get the user who's currently signed in
         $http({
             method: 'GET',
-            url: 'http://localhost:1000/viewUser',
+            url: 'http://localhost:8080/viewUser',
             data: angular.fromJson(user),
             headers: {'Content-Type': 'application/json'}
          }).success(function (data) {
@@ -351,7 +351,7 @@ mrDelivery.controller("mrDeliveryController", function ($scope, $http)
             //Now POST the data to the CartController
             $http({
                 method: 'POST',
-                url: 'http://localhost:1000/saveCart',
+                url: 'http://localhost:8080/saveCart',
                 data: angular.toJson(addToCart),
                 headers: {'Content-Type': 'application/json'}
             }).success(function (data) {
@@ -375,7 +375,7 @@ mrDelivery.controller("mrDeliveryController", function ($scope, $http)
         //Find signed in userId
         $http({
             method: 'GET',
-        url: 'http://localhost:1000/viewUser',
+        url: 'http://localhost:8080/viewUser',
             data: angular.fromJson(user),
             headers: {'Content-Type': 'application/json'}
          }).success(function (data) {
@@ -384,7 +384,7 @@ mrDelivery.controller("mrDeliveryController", function ($scope, $http)
             //Now search for the user's cart
             $http({
                 method: 'GET',
-                url: 'http://localhost:1000/viewCart/' + userID,
+                url: 'http://localhost:8080/viewCart/' + userID,
                 data: angular.fromJson(user),
                 headers: {'Content-Type': 'application/json'}
              }).success(function (data) {
@@ -458,7 +458,7 @@ mrDelivery.controller("mrDeliveryController", function ($scope, $http)
         var user;
         $http({
             method: 'GET',
-            url: 'http://localhost:1000/viewUser',
+            url: 'http://localhost:8080/viewUser',
             data: angular.fromJson(user),
             headers: {'Content-Type': 'application/json'}
          }).success(function (data) {
@@ -467,7 +467,7 @@ mrDelivery.controller("mrDeliveryController", function ($scope, $http)
             //Submit a DELETE request to the CartController
             $http({
                 method: 'DELETE',
-                url: 'http://localhost:1000/emptyCart/' + userID,
+                url: 'http://localhost:8080/emptyCart/' + userID,
                 data: angular.toJson(user),
                 headers: {'Content-Type': 'application/json'}
              }).success(function (data) {
@@ -495,7 +495,7 @@ mrDelivery.controller("mrDeliveryController", function ($scope, $http)
         //Submits a DELETE request to the CartController
         $http({
             method: 'DELETE',
-            url: 'http://localhost:1000/deleteCart/' + cartItem.cartId,
+            url: 'http://localhost:8080/deleteCart/' + cartItem.cartId,
             data: angular.toJson(delCart),
             headers: {'Content-Type': 'application/json'}
          }).success(function () {
@@ -512,7 +512,7 @@ mrDelivery.controller("mrDeliveryController", function ($scope, $http)
         var user;
         $http({
             method: 'GET',
-            url: 'http://localhost:1000/viewUser',
+            url: 'http://localhost:8080/viewUser',
             data: angular.fromJson(user),
             headers: {'Content-Type': 'application/json'}
          }).success(function (data) {
@@ -521,7 +521,7 @@ mrDelivery.controller("mrDeliveryController", function ($scope, $http)
             //GET User's Cart from server
             $http({
                 method: 'GET',
-                url: 'http://localhost:1000/viewCart/' + userID,
+                url: 'http://localhost:8080/viewCart/' + userID,
                 data: angular.fromJson(user),
                 headers: {'Content-Type': 'application/json'}
             }).success(function (data) {
@@ -588,7 +588,7 @@ mrDelivery.controller("mrDeliveryController", function ($scope, $http)
         //Submit a DELETE request to the OrderController
         $http({
             method: 'DELETE',
-            url: 'http://localhost:1000/deleteOrder/' + order.orderId
+            url: 'http://localhost:8080/deleteOrder/' + order.orderId
         })
         .success(function () {
             alert("Order Removed");
@@ -603,7 +603,7 @@ mrDelivery.controller("mrDeliveryController", function ($scope, $http)
         var user;
         $http({
             method: 'GET',
-            url: 'http://localhost:1000/viewUser',
+            url: 'http://localhost:8080/viewUser',
             data: angular.fromJson(user),
             headers: {'Content-Type': 'application/json'}
          }).success(function (data) {
@@ -635,7 +635,7 @@ mrDelivery.controller("mrDeliveryController", function ($scope, $http)
             //along with the user id to the deliveryAddressController
             $http({
                 method: 'POST',
-                url: 'http://localhost:1000/saveDeliveryInfo',
+                url: 'http://localhost:8080/saveDeliveryInfo',
                 data: angular.toJson(submitDeliveryInfo),
                 headers: {'Content-Type': 'application/json'}
             }).success(function () {
@@ -646,7 +646,7 @@ mrDelivery.controller("mrDeliveryController", function ($scope, $http)
             //along with the user id to the paymentController
             $http({
                 method: 'POST',
-                url: 'http://localhost:1000/SavePayment',
+                url: 'http://localhost:8080/SavePayment',
                 data: angular.toJson(paymentDetails),
                 headers: {'Content-Type': 'application/json'}
             }).success(function () {
@@ -657,7 +657,7 @@ mrDelivery.controller("mrDeliveryController", function ($scope, $http)
                 //Get User's cart once again
                 $http({
                     method: 'GET',
-                    url: 'http://localhost:1000/viewCart/' + userID,
+                    url: 'http://localhost:8080/viewCart/' + userID,
                     data: angular.fromJson(user),
                     headers: {'Content-Type': 'application/json'}
                 }).success(function (data) {
@@ -682,7 +682,7 @@ mrDelivery.controller("mrDeliveryController", function ($scope, $http)
                         //Now save the order by submitting a POST request to the server
                         $http({
                             method: 'POST',
-                            url: 'http://localhost:1000/saveOrder',
+                            url: 'http://localhost:8080/saveOrder',
                             data: angular.toJson(orderItems),
                             headers: {'Content-Type': 'application/json'}
                         }).success(function () {
@@ -691,7 +691,7 @@ mrDelivery.controller("mrDeliveryController", function ($scope, $http)
                             //lastly, empty the user's cart
                             $http({
                                 method: 'DELETE',
-                                url: 'http://localhost:1000/emptyCart/' + userID,
+                                url: 'http://localhost:8080/emptyCart/' + userID,
                                 data: angular.toJson(user),
                                 headers: {'Content-Type': 'application/json'}
                              }).success(function () {
@@ -702,7 +702,7 @@ mrDelivery.controller("mrDeliveryController", function ($scope, $http)
                                 console.log("Your cart is now empty!");
                                 
                                 //Redirect to Order Confirmation page
-                                window.location.href = "http://localhost:1000/orderConfirmation";
+                                window.location.href = "http://localhost:8080/orderConfirmation";
                                 
                             }); 
                         });
@@ -720,7 +720,7 @@ mrDelivery.controller("mrDeliveryController", function ($scope, $http)
     function refreshOrdersData() {
         $http({
             method: 'GET',
-            url: 'http://localhost:1000/getAllOrders',
+            url: 'http://localhost:8080/getAllOrders',
             data: angular.fromJson(Orders),
             headers: {'Content-Type': 'application/json'}
         }).success(function (data) {
@@ -745,7 +745,7 @@ mrDelivery.controller("mrDeliveryController", function ($scope, $http)
         var user;
         $http({
             method: 'GET',
-            url: 'http://localhost:1000/viewUser',
+            url: 'http://localhost:8080/viewUser',
             data: angular.fromJson(user),
          }).success(function (data) {
             var userID =  data.id; //Current User Found
@@ -753,7 +753,7 @@ mrDelivery.controller("mrDeliveryController", function ($scope, $http)
             //Now Get the current user's placed orders
             $http({
                 method: 'GET',
-                url: 'http://localhost:1000/getPlacedOrders/' + userID,
+                url: 'http://localhost:8080/getPlacedOrders/' + userID,
                 data: angular.fromJson(user),
                 headers: {'Content-Type': 'application/json'}
              }).success(function (data) {

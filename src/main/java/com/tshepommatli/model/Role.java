@@ -17,6 +17,9 @@ public class Role {
 	@Column(name="role")
 	private String role;
 
+	public Role() {
+	}
+
         public Role(int id, String role) {
             this.id = id;
             this.role = role;
