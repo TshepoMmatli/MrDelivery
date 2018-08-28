@@ -1,0 +1,279 @@
+<html class="no-js" lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"> 
+    <head>
+        <meta charset="utf-8"/>
+        <title>Mr. Delivery</title>
+        <link rel="shortcut icon" href="images/plate-fork-and-knife.png"/>
+        <meta name="description" content=""/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
+        
+        <!--Angular-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js" ></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-cookies.min.js" ></script>
+        
+        <script data-require="jquery@2.1.4" data-semver="2.1.4" src="http://code.jquery.com/jquery-2.1.4.min.js"></script> 
+        <script type="text/javascript" src="/static/js/angular.js" th:src="@{/js/angular.js}"></script>
+
+        <!--Bootstrap-->
+        <script src="/js/vendor/jquery-1.11.2.min.js"></script>
+        <script src="/js/vendor/bootstrap.min.js"></script>
+        
+        <!--Template animation JS-->
+        <script src="/js/plugins.js"></script>
+        <script src="/js/modernizr.js"></script>
+        <script src="/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+        <script src="/js/main.js"></script>
+        
+        <!--fonts-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"/>
+        <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'/>
+        <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+
+        <!--For Plugins external css-->
+        <link rel="stylesheet" href="/css/plugins.css" />
+        <link rel="stylesheet" href="/css/roboto-webfont.css" />
+
+        <!--Theme custom css -->
+        <link rel="stylesheet" href="/css/restaurantOwners.css"/>
+
+        <!--Theme Responsive css-->
+        <link rel="stylesheet" href="/css/responsive.css" />
+
+        
+    </head>
+    <body ng-app="myApp" ng-controller="mrDeliveryController">
+        <div class='preloader'><div class='loaded'>&nbsp;</div></div>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                         <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/index"><img src="/images/animated_logo.png" alt="animated_logo" width="200" height="40"/></a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><h5><a style="color: #000000"><span th:utext="${email}"></span></a><h5></li>
+                        <li class="login"><a href="/login">Sign In</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+            <!-- Sections -->
+        <section id="social" class="social">
+            <div class="container">
+                <!-- Example row of columns -->
+                <div class="row">
+                    <div class="social-wrapper">
+                        <div class="col-md-6">
+                            <div class="social-icon">
+                                <a href="/index"><i class="fa fa-spinner"> Find me food!</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- /container -->       
+        </section>
+
+        <!--Home page style-->
+        <header id="home" class="home">
+            <div class="overlay-fluid-block">
+                <div class="container text-center">
+                    <div class="row">
+                        <div class="home-wrapper">
+                            <div class="col-md-10 col-md-offset-1">
+                                <div class="home-content">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>			
+            </div>
+        </header>
+        <section id="social" class="social">
+            <div class="container">
+                <!-- Example row of columns -->
+                <div class="row">
+                    <div class="social-wrapper">
+                        <div class="col-md-6">
+                            <div class="social-icon">
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="social-contact">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- /container -->       
+        </section>
+        
+        <!-- Sections -->        
+        <section id="features" class="features sections">
+            <div id="container">
+		<div class = "simpleform">
+                    <div class="wrapper">
+                        <div class="brand">
+                            <img style="display: block; margin-right: auto; " src="/images/mrdLogo.jpg" alt="mrdLogo" width="237" height="213"/>
+                            <h4>Gold - Hey Restaurant Owners: Hungry For More Business?</h4>
+                            <h5>Your restaurant will have online ordering through Mr. Delivery!</h5>
+                        </div>
+                        <div class="inputs">
+                            <form method="POST" enctype="multipart/form-data" id="fileUploadForm">
+                                <input ng-hide="true" type="text" name="extraField"/><br/><br/>
+                                <input ng-hide="true" type="file" name="files"/><br/><br/>
+                            
+                                <div>
+                                    <br/>
+                                    <label for="img">Upload your restaurant logo: </label>
+                                    <input type="file" name="files" id="img"/><br/><br/>
+                                    <h5>Upload Result</h5>
+                                    <pre>
+                                        <span id="result"></span>
+                                    </pre>
+                                </div>
+                                <div>
+                                        <label for="package_type">Select Your Package:</label>
+                                        <select id="package_type" ng-model="requestForm.packageType" ng-required="true">
+                                            <option value="packge">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</option>
+                                            <option value="Gold">Gold</option>
+                                            <option value="Platinum">Platinum</option>
+                                            <option value="Titanium">Titanium</option>
+                                            <option value="Diamond">Diamond</option>
+                                        </select>
+                                </div>
+                                <div>
+                                        <label for="restaurant_name">Restaurant Name: *</label>
+                                        <input type="text" id="restaurant_name" ng-model="requestForm.restaurant_name"></input>
+                                </div>
+                                <div>
+                                        <label for="restaurant_address">Restaurant Address: *</label>
+                                        <input type="text" id="restaurant_address" ng-model="requestForm.restaurant_address"></input>
+                                </div>
+                                <div>
+                                        <label for="restaurant_city">Restaurant City: *</label>
+                                        <input type="text" id="restaurant_city" ng-model="requestForm.restaurant_city"></input>
+                                </div>                               
+                                <div>
+                                        <label for="restaurant_zipcode">Restaurant Zipcode: *</label>
+                                        <input type="text" id="restaurant_zipcode" ng-model="requestForm.restaurant_zipcode"></input>
+                                </div>
+                                <div>
+                                        <label for="restaurant_phone_num">Restaurant Phone Number: *</label>
+                                        <input type="text" id="restaurant_phone_num" ng-model="requestForm.restaurant_phone_num"></input>
+                                </div>
+                                <div>
+                                        <label for="restaurant_fax_num">Restaurant Fax Number: *</label>
+                                        <input type="text" id="restaurant_fax_num" ng-model="requestForm.restaurant_fax_num"></input>
+                                </div>
+                                <div>
+                                        <label for="owner_name">Restaurant Owner/Point of Contact Name: *</label>
+                                        <input type="text" id="owner_name" ng-model="requestForm.owner_name"></input>
+                                </div>
+                                <div>
+                                        <label for="email_address">Email Address: *</label>
+                                        <input type="text" id="email_address" ng-model="requestForm.email_address"></input>
+                                </div>
+                                <div>
+                                        <label for="cellphone_num">Cell Phone Number: *</label>
+                                        <input type="text" id="cellphone_num" ng-model="requestForm.cellphone_num"></input>
+                                </div>
+                                <div>
+                                        <label for="hrs_open">Hours of Operation Open: *</label>
+                                        <input type="time" id="hrs_open" ng-model="requestForm.hrs_open"></input>
+                                </div>
+                                <div>
+                                        <label for="hrs_close">Hours of Operation Close: *</label>
+                                        <input type="time" id="	hrs_close" ng-model="requestForm.hrs_close"></input>
+                                </div>
+                                <div>
+                                    <br/>
+                                    <label for="special_instructions">Special Instructions:</label>
+                                    <textarea id="special_instructions" placeholder="N/A" rows="7" cols="50" ng-model="requestForm.special_instructions"></textarea>
+                                </div>
+                                <div>
+                                    <label for="info_supply">How Did You Find Out About Mr. Delivery?</label>
+                                    <select id="info_supply" ng-model="requestForm.info_supply" ng-required="true">
+                                        <option value="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</option>
+                                        <option value="Restaurant Referral">Restaurant Referral</option>
+                                        <option value="Email">Email</option>
+                                        <option value="Facebook">Facebook</option>
+                                        <option value="Google">Google</option>
+                                        <option value="Word of Mouth">Word of Mouth</option>
+                                        <option value="Mail">Mail</option>
+                                        <option value="Twitter">Twitter</option>
+                                        <option value="Linkedin">Linkedin</option>
+                                    </select>
+                                    <br/>
+                                        <input type="submit" value="Submit" ng-click="processRequest()"id="btnSubmit"/>
+                                    <br/>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>   
+		</div>
+            </div>
+        </section><!--End of Features 2 Section --> 
+        <section id="social" class="social">
+            <div class="container">
+                <!-- Example row of columns -->
+                <div class="row">
+                    <div class="social-wrapper">
+                        <div class="col-md-6">
+                            <div class="social-icon">
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="social-contact">
+                                <a href="#"><i class="fa fa-phone"></i>+512 649 1057</a>
+                                <a href="#"><i class="fa fa-envelope"></i>contact@mrdelivery.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- /container -->       
+        </section>
+
+        <!--Footer-->
+        <footer id="footer" class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-wrapper">
+
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="footer-brand">
+                                <img src="/images/logo.png" alt="logo" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <br/>
+                <div class="row">
+                    <div class="col-sm-6">© 2017 Mr. Delivery ® Inc. All rights reserved.</div>
+                </div>
+            </div>
+        </footer>
+	
+        <div class="scrollup">
+                <a href="#"><i class="fa fa-chevron-up"></i></a>
+        </div>
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+    </body>
+</html>

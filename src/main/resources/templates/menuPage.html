@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html class="no-js" lang="eng" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Restaurant Delivery - Mr. Delivery | Menus </title>
+    <link rel="shortcut icon" href="images/plate-fork-and-knife.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                    
+    <!--Angular-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-cookies.min.js" ></script>
+    <script data-require="jquery@2.1.4" data-semver="2.1.4" src="http://code.jquery.com/jquery-2.1.4.min.js"></script> 
+    <script type="text/javascript" src="/static/js/angular.js" th:src="@{/js/angular.js}"></script>
+
+    <!--CSS-->
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/menuPage.css"/>
+    <link rel="stylesheet" href="/css/modal.css"/>
+        
+
+</head>
+    <body ng-app="myApp" ng-controller="mrDeliveryController">
+   <div class='preloader'><div class='loaded'>&nbsp;</div></div>
+    
+	<!-- This one in here is responsive menu for tablet and mobiles -->
+    <div class="responsive-navigation visible-sm visible-xs">
+        <a href="#" class="menu-toggle-btn">
+            <i class="fa fa-bars fa-2x"></i>
+        </a>
+        <div class="navigation responsive-menu">
+ 
+            <ul class="main-menu">
+                <li class="about"><a href="/menuPage" method="GET" data-toggle="modal" data-target="#myModal">View Menu</a></li>
+                <li class="services"><a href="#">Create Menu</a></li>
+                <li class="home"><a  href="#" data-toggle="modal" data-target="#addSectionModal" >Add Section</a></li>
+                <li class="portfolio"><a href="#portfolio">Portfolio</a></li>
+                <li class="contact"><a href="#contact">Contact</a></li>
+                <li><a href="https://www.google.com" class="external">Google</a></li>
+            </ul> <!-- /.main_menu -->
+        </div> <!-- /.responsive_menu -->
+    </div> <!-- /responsive_navigation -->
+
+	<div id="main-sidebar" class="hidden-xs hidden-sm">
+		<div class="logo">
+			<a th:href="@{/}" method="get"><h1>Mr.Delivery</h1></a>
+			<span>Get Local Food Delivered | Menu </span>
+		</div> <!-- /.logo -->
+
+		<div class="navigation">
+                    <ul class="main-menu">
+                        <li class="about"><a id="selectRestaurantBtn" href="#" data-toggle="modal" data-target="#selectRestaurantModal">View Menu</a></li>
+                        <li class="services"><a href="#">Create Menu</a></li>
+                        <li class="home"><a  href="#" data-toggle="modal" data-target="#addSectionModal" >Add Section</a></li>
+                        <li class="portfolio"><a href="#portfolio">Portfolio</a></li>
+                        <li class="contact"><a href="#contact">Contact</a></li>
+                        <li><a href="https://www.google.com" class="external">Google</a></li>
+                    </ul>
+		</div> <!-- /.navigation -->
+
+	</div> <!-- /#main-sidebar -->
+
+        <!-- Add Section Modal -->
+        <div class="modal fade" id="addSectionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Add Section</h4>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <ng-form name="nameDialog" novalidate role="form">
+                                <div class="form-group input-group-lg">
+                                    <label class="control-label" for="sectionName">Section Name</label>
+                                    <input type="text" class="form-control" name="sectionName" id="sectionName" ng-model="section_name" required>
+                                    <span class="help-block">E.g. Main Course, Breakfast, Lunch, Drinks or Desserts </span>
+                                </div>
+                        </ng-form>
+                    </div>  
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" ng-click="saveSection()">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Select Restaurant Modal -->
+        <div ng-controller="restaurantController" class="modal fade bs-example-modal-lg" id="selectRestaurantModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Select Restaurant</h4>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <ng-form name="nameDialog" novalidate role="form">
+                                <div class="table-responsive">
+                                    <table class = "table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Restaurant ID</th>
+                                                <th>Restaurant Name</th>
+                                                <th>Restaurant Address</th>
+                                                <th>City</th>
+                                                <th>Zipcode</th>
+                                                <th>Email Address</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="table-row" href="#" ng-repeat="restaurant in restaurants"  ng-click="showRestaurantMenu(restaurant)">
+                                                <td>{{ restaurant.restaurantId }}</td>
+                                                <td>{{ restaurant.restaurantName }}</td>
+                                                <td>{{ restaurant.restaurantAddress }}</td>
+                                                <td>{{ restaurant.restaurantCity }}</td>
+                                                <td>{{ restaurant.restaurantZipcode }}</td>
+                                                <td>{{ restaurant.emailAddress }}</td>   
+                                            </tr>
+                                      </tbody>
+                                    </table>
+                                </div>
+                        </ng-form>
+                    </div>  
+                </div>
+            </div>
+        </div>
+        
+	0<div id="main-content">
+            <div id="modalConfirmYesNo" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" 
+
+                            class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 id="lblTitleConfirmYesNo" class="modal-title">Confirmation</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p id="lblMsgConfirmYesNo"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="btnYesConfirmYesNo" 
+
+                            type="button" class="btn btn-primary">Yes</button>
+                            <button id="btnNoConfirmYesNo" 
+
+                            type="button" class="btn btn-default">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!--Menu Display-->
+            <div class="myMenu">
+                <div class="myMenuSection" >
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                        Menu Section
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    Anim pariatur cliche reprehenderit
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            
+            <!--
+            <div class="table-responsive">
+                <table class = "table table-hover">
+                    <caption>Hover Table Layout</caption>
+
+                    <thead>
+                       <tr>
+                          <th>Name</th>
+                          <th>City</th>
+                          <th>Pincode</th>
+                       </tr>
+                    </thead>
+
+                    <tbody>
+                       <tr>
+                          <td>Tanmay</td>
+                          <td>Bangalore</td>
+                          <td>560001</td>
+                       </tr>
+                    </tbody>
+                 </table>
+            </div><!--End of responsives tables-->
+            <!--End Menu Display-->
+            
+            
+         
+            <!--<label>Yes &amp; No: </label>
+            <button onclick="ShowConfirmYesNo()">Hunger Test</button> 
+		(<label id="lblTestResult">Not Available</label>)-->
+            
+            <div class="site-footer">
+
+                    <div class="bottom-footer">
+                            <div class="container-fluid">
+                                    <div class="row">
+                                            <div class="col-md-6">
+                                                    <p class="copyright">
+                                                        © 2017 Mr. Delivery ® Inc. All rights reserved.</p>
+                                                    </p>
+                                                    
+                                            </div> <!-- /.col-md-6 -->
+                                            <div class="col-md-6 credits">
+                                                    <p><!-- Design: <a rel="nofollow" href="http://www.templatemo.com/tm-394-sonic" target="_parent">Sonic</a> --></p>
+                                            </div> <!-- /.col-md-6 -->
+                                    </div> <!-- /.row -->
+                            </div> <!-- /.container-fluid -->
+                    </div> <!-- /.bottom-footer -->
+            </div> <!-- /.site-footer -->
+	</div> <!-- /#main-content -->
+        
+        <div class="scrollup">
+            <a href="#"><i class="fa fa-chevron-up"></i></a>
+        </div>
+        
+        <!--JAVASCRIPT-->
+        <script src="/js/vendor/jquery-1.11.2.min.js"></script>
+        <script src="/js/vendor/bootstrap.min.js"></script>
+        <script src="/js/plugins.js"></script>
+        <script src="/js/modernizr.js"></script>
+        <script src="/js/main.js"></script>
+        <script>
+            function AsyncConfirmYesNo(title, msg, yesFn, noFn) {
+                var $confirm = $("#modalConfirmYesNo");
+                $confirm.modal('show');
+                $("#lblTitleConfirmYesNo").html(title);
+                $("#lblMsgConfirmYesNo").html(msg);
+                $("#btnYesConfirmYesNo").off('click').click(function () {
+                    yesFn();
+                    $confirm.modal("hide");
+                });
+                $("#btnNoConfirmYesNo").off('click').click(function () {
+                    noFn();
+                    $confirm.modal("hide");
+                });
+            } 
+            
+            function ShowConfirmYesNo() {
+                AsyncConfirmYesNo(
+                    "Yes & No Confirmation Box",
+                    "Are you hungry?",
+                    MyYesFunction,
+                    MyNoFunction
+                );
+            }
+            
+            function MyYesFunction() {
+                alert("Time to get off your workstation!");
+                $("#lblTestResult").html("You are hungry");
+            }
+            function MyNoFunction() {
+                alert("Well... just continue working.");
+                $("#lblTestResult").html("You are not hungry");
+            }
+    </script>
+</body>
+</html>

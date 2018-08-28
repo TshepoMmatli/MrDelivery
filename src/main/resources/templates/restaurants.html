@@ -1,0 +1,343 @@
+<!doctype html>
+<html class="no-js" lang="eng" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"> 
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Restaurant Delivery - Mr. Delivery | Restaurants </title>
+        <link rel="shortcut icon" href="images/plate-fork-and-knife.png">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+        <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <!--        <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">-->
+        
+        <!--Angular-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js" ></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-cookies.min.js" ></script>
+        <script data-require="jquery@2.1.4" data-semver="2.1.4" src="http://code.jquery.com/jquery-2.1.4.min.js"></script> 
+        <script type="text/javascript" src="/static/js/angular.js" th:src="@{/js/angular.js}"></script>
+        
+        <!--For Plugins external css-->
+        <link rel="stylesheet" href="/css/plugins.css" />
+        <link rel="stylesheet" href="/css/roboto-webfont.css" />
+
+        <!--Theme custom css -->
+        <link rel="stylesheet" href="/css/adminHome.css">
+        <link rel="stylesheet" href="/css/pendingRequest.css">
+
+        <!--Theme Responsive css-->
+        <link rel="stylesheet" href="/css/responsive.css" />
+
+        <script src="/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+        
+    </head>
+<body ng-app="myApp" ng-controller="mrDeliveryController">
+        <div class='preloader'><div class='loaded'>&nbsp;</div></div>
+        
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/index"><img src="/images/animated_logo.png" alt="animated_logo" width="200" height="40"/></a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><bold><h5><a style="color: #000000"><span th:utext="${email}"></span></a><h5></bold></li>
+                        <li class="login"><a th:href="@{/logout}" method="get">Log out</a></li>
+                    </ul>
+                 
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+            <!-- Sections -->
+        <section id="social" class="social">
+            <div class="container">
+                <!-- Example row of columns -->
+                <div class="row">
+                    <div class="social-wrapper">
+                        <div class="col-md-8">
+                            <div class="social-icon">
+                                <a th:href="@{/adminHome}" method="GET"><i class="fa fa-home" aria-hidden="true"> Admin Home </i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                                <a th:href="@{/pendingRequest}" method="GET" active><i class="fa fa-spinner"> Pending Requests </i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                                <a  th:href="@{/restaurants}" method="GET"><i class="fa fa-cutlery"> Restaurants </i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                                <a th:href="@{/orders}" method="GET"><i class="fa fa-shopping-basket">Orders</i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- /container -->       
+        </section>
+
+        <!--Home page style-->
+        <header id="home" class="home">
+            <div class="overlay-fluid-block">
+                <div class="container text-center">
+                    <div class="row">
+                        <div class="home-wrapper">
+                            <div class="col-md-10 col-md-offset-1">
+                                <div class="home-content">
+                                    <h1><span>Restaurants</span></h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>			
+            </div>
+        </header>
+         
+        <section id="social" class="social">
+            <div class="container">
+                <!-- Example row of columns -->
+                <div class="row">
+                    <div class="social-wrapper">
+                        <div class="col-md-6">
+                            <div class="social-icon">
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="social-contact">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- /container -->       
+        </section>
+        <section id="social" class="social">
+            <div class="container">
+                <!-- Example row of columns -->
+                <div class="row">
+                    <div class="social-wrapper">
+                        <div class="col-md-6">
+                            <div class="social-icon">
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="social-contact">
+                                <a href="#"><i class="fa fa-phone"></i>+512 649 1057</a>
+                                <a href="#"><i class="fa fa-envelope"></i>contact@mrdelivery.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- /container -->       
+        </section>
+        
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Restaurant ID</th>
+                        <th>Restaurant Name</th>
+                        <th>Restaurant Address</th>
+                        <th>City</th>
+                        <th>Zipcode</th>
+                        <th>Email Address</th>
+                        <th>Request Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="restaurant in restaurants">
+                        <td>{{ restaurant.restaurantId }}</td>
+                        <td>{{ restaurant.restaurantName }}</td>
+                        <td>{{ restaurant.restaurantAddress }}</td>
+                        <td>{{ restaurant.restaurantCity }}</td>
+                        <td>{{ restaurant.restaurantZipcode }}</td>
+                        <td>{{ restaurant.emailAddress }}</td>
+                        <td>{{ restaurant.requestStatus }}</td>
+                        <td><a ng-click="deleteRestaurant(restaurant)" id="button" class="fa fa-trash-o"></a> 
+                            | <a ng-click="createMenu(restaurant)" id="button" class="fa fa-plus">Create Menu</a> 
+                            | <a ng-click="viewMenu(restaurant)" class="fa fa-eye" id="button">View Menu</a></td>
+                    </tr>
+              </tbody>
+            </table>
+        </div>
+        
+        <!--My Modals-->
+        <!--Create Menu Modal-->
+        <div class="modal fade bs-exrestaurantControllerample-modal-lg" id="createMenuModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Create Menu</h4>
+                    </div>
+                    
+                    <div class="modal-body"> 
+                        <div>
+                        </div>
+                        <div>
+                            <labal>Restaurant ID:  <a ng-model="menuForm.restaurantId">{{restaurantId}}</a></labal>
+                        </div>
+                        <div>
+                            <br/>
+                            <label for="menu_section">Menu Section :</label><br/>
+                            <select id="menu_section" ng-model="menuForm.menu_section" ng-required="true">
+                                <option value="menu_section">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;</option>
+                                <option value="Breakfast">Breakfast</option>
+                                <option value="Lunch">Lunch</option>
+                                <option value="Dinner">Dinner</option>
+                                <option value="Drinks">Drinks</option>
+                                <option value="Dessert">Dessert</option>
+                                <option value="Salads">Salads</option>
+                                <option value="Appetizers">Appetizers</option>
+                                <option value="Starters">Starters</option>
+                                <option value="Main-Course">Main-Course</option>
+                                <option value="Meals">Meals</option>
+                                <option value="Sides">Sides</option>
+                                <option value="Snacks">Snacks</option>
+                                <option value="Snacks">Snacks</option>
+                                <option value="Whooper">Whooper</option>
+                                <option value="Beef Burger">Beef Burger</option>
+                                <option value="Chicken Burger">Chicken Burger</option>
+                            
+                            </select>
+                        </div>
+                        <div>
+                            <label for="item_name">Item Name :</label><br/>
+                            <input type="text" id="item_name" ng-model="menuForm.item_name"></input>
+                        </div>
+                        <div>
+                            <label for="item_desc">Item Description :</label><br/>
+                            <input type="text" id="item_desc" ng-model="menuForm.item_desc"></input>
+                        </div>
+                        <div>
+                            <label for="item_price">Item Price :</label><br/>
+                            <input type="text" id="item_price" ng-model="menuForm.item_price"></input>
+                        </div>
+                    </div> 
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" ng-click="saveMenuItem()">Save Item</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!--View Menu Section Modal-->
+        <div class="modal fade bs-exrestaurantControllerample-modal-lg" id="ViewMenuSectionModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Please select a menu section</h4>
+                    </div>
+                    
+                    <div class="modal-body"> 
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr ng-repeat="sectionName in Sections" ng-click="viewMenuItem(sectionName)">
+                                        <td>{{ sectionName }}</td>
+                                    </tr>
+                              </tbody>
+                            </table>
+                        </div> 
+                </div>
+            </div>
+        </div>
+        </div>    
+        <!--View Menu Items Modal-->
+        <div class="modal fade bs-exrestaurantControllerample-modal-lg" id="ViewMenuitemsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{{sectionName}}</h4>
+                    </div>
+                    
+                    <div class="modal-body"> 
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="menu in Menus" class="add">
+                                        <td>{{menu.itemName}}&nbsp&nbsp&nbsp
+                                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                            R{{menu.itemPrice}} <br/>
+                                            {{menu.itemDesc}}
+                                        </td>
+                                    </tr>
+                              </tbody>
+                            </table>
+                        </div> 
+                </div>
+            </div>
+        </div>
+        </div>
+            
+        <!--End Modals-->
+       
+        
+        <!--Footer-->
+        <footer id="footer" class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-wrapper">
+
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="footer-brand">
+                                <img src="/images/logo.png" alt="logo" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <br/>
+                <div class="row">
+                    <div class="col-sm-6">© 2017 Mr. Delivery ® Inc. All rights reserved.</div>
+                </div>
+            </div>
+        </footer>
+		
+		
+        <div class="scrollup">
+                <a href="#"><i class="fa fa-chevron-up"></i></a>
+        </div>
+        
+        <!--JAVASCRIPT-->
+        <script src="/js/vendor/jquery-1.11.2.min.js"></script>
+        <script src="/js/vendor/bootstrap.min.js"></script>
+        <script src="/js/plugins.js"></script>
+        <script src="/js/modernizr.js"></script>
+        <script src="/js/main.js"></script>
+    </body>
+</html>
